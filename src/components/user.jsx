@@ -1,38 +1,35 @@
-//const User = (props) =>{
-   // return (
-       // <div>
-         //   <h1>{props.name}</h1>
-          //  <p>{props.description}</p>
-       // </div>
-  //  );
-//}
 
-import React from "react";
+import React,{useState,useEffect} from "react";
 
-class User extends React.Component {
-  constructor(props) {
-    super(props);
+const User = (props) => {
 
-    this.state = {
-      planet: "earth",
-    };
-    console.log("Hey I'm from Constructor");
-  }
+  const [planet,setPlanet] = useState("earth");
+  
+  //componentDidMount
+  useEffect(()=>{
+     console.log("Component mounting");
 
-  componentDidMount() {
-    this.setState({ planet: "Jupiter" });
-  }
+    //componentWillUnmount
+    return console.log("Bye bye");
+  },[]);
 
-  render() {
-    console.log("Hey I'm from render()");
+
+  //componentDidUpdate
+  //shouldComponentUpdate
+  useEffect(()=>{
+    console.log("Planet changes");
+  },[planet]);
+
+
+  //the value
+  //the function to update the state
     return (
       <div>
-        <h1> {this.props.name} </h1>
-        <p> {this.props.description} </p>
-        <h4>{this.state.planet}</h4>
+        <h1> {props.name} </h1>
+        <p> {props.description} </p>
+        <button onClick={()=> setPlanet("Pluto")}>{planet}</button>
       </div>
     );
-  }
 }
 
 
